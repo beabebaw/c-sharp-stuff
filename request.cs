@@ -13,7 +13,7 @@ var request = WebRequest.Create(url);
 request.Method = "POST";
 
 // serialize an user object to JSON and transform it into an array of bytes 
-var user = new User("John Doe", "gardener");
+var user = new User("JohnDoe", "johngardener@gmail.com", "jardineiro94");
 var json = JsonSerializer.Serialize(user);
 byte[] byteArray = Encoding.UTF8.GetBytes(json);
 
@@ -36,4 +36,4 @@ using var reader = new StreamReader(respStream);
 string data = reader.ReadToEnd();
 Console.WriteLine(data);
 
-record User(string Name, string Occupation);
+record User(string username, string email, string password);
