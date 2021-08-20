@@ -17,7 +17,7 @@ var user = new User("JohnDoe", "johngardener@gmail.com", "jardineiro94");
 var json = JsonSerializer.Serialize(user);
 byte[] byteArray = Encoding.UTF8.GetBytes(json);
 
-request.ContentType = "application/x-www-form-urlencoded";
+request.ContentType = "application/json";
 request.ContentLength = byteArray.Length;
 
 // get the stream of the request with GetRequestStream and write the byte array into the stream with Write
