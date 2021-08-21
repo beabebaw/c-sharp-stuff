@@ -4,9 +4,9 @@ using System.Text;
 using System.Net;
 using System.Text.Json;
 
-// POST request to httpbin.org/post. The data sent is in JSON format
+// POST request to https://gene.lacuna.cc/api/users/create. The data sent is in JSON format 
 
-var url = "https://httpbin.org/post";
+var url = "https://gene.lacuna.cc/api/users/create";
 
 // the request method is set to POST
 var request = WebRequest.Create(url);
