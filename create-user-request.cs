@@ -24,7 +24,7 @@ request.ContentLength = byteArray.Length;
 using var reqStream = request.GetRequestStream();
 reqStream.Write(byteArray, 0, byteArray.Length);
 
-// get responde with GetResponse
+// get response with GetResponse
 using var response = request.GetResponse();
 // and print the status of the response
 Console.WriteLine(((HttpWebResponse)response).StatusDescription);
