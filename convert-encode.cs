@@ -1,17 +1,3 @@
-/*
--> 2-bits arrays
-A: 0b00      C: 0b01
-T: 0b11      G: 0b10
-
-String:   "CATCGTCAGGAC"
-Bits:     0b010011011011010010100001
-Byte[]:   [0x4D, 0xB4, 0xA1] // notice the bits to byte conversion is Big-Endian
-Base64:   "TbSh"
-
-TASK --> preciso de alguma coisa que converta bytes para 2-bits
-
-o objetivo é receber string e converter para base64
-*/
 
 /*
 -> 2-bits arrays
@@ -57,16 +43,17 @@ public class Example
 	string string2 = Encoding.Default.GetString(decBytes);
 	Console. WriteLine("Decimal byte array to String: \n   {0}\n", string2);
 
-	// STRING TO DECIMAL BYTE ARRAY
+	// STRING TO BYTE ARRAY
 	byte[] bytes3 = Encoding.Default.GetBytes(string2);
-	Console. WriteLine("String to Decimal byte array: \n   {0}\n", String.Join("-", bytes3));
+	Console. WriteLine("String to Byte array: \n   {0}\n", String.Join("-", bytes3));
 
-	// STRING TO HEXADECIMAL BYTE ARRAY
-	byte[] oi = Encoding.Unicode.GetBytes("CATCGTCAGGAC");
-	//Console.WriteLine("   {0}\n", BitConverter.ToString(oi));
+	// STRING TO BYTE ARRAY
+	byte[] oi = Encoding.Default.GetBytes("CATCGTCAGGAC");
+	Console.WriteLine("String to apparently hex byte array: ");
+	Console.WriteLine("   {0}\n", BitConverter.ToString(oi));
 
-	byte[] tchau = Encoding.Convert(Encoding.Unicode, Encoding.ASCII, oi);
-	Console.WriteLine("String to Hexadecimal byte array: ");
+	byte[] tchau = Encoding.Convert(Encoding.Default, Encoding.UTF8, oi);
+	Console.WriteLine("String Byte array: ");
 	Console.WriteLine("   {0}\n", BitConverter.ToString(tchau));
 	   
    }
@@ -117,4 +104,24 @@ class Program
 		Console.WriteLine("Without padding: \n   {0}\n", ToBinaryString02( Encoding.UTF8, "CATCGTCAGGAC" ) );
 		Console.WriteLine("Without Select method: \n   {0}\n", ToBinaryString03( Encoding.UTF8, "CATCGTCAGGAC" ) );
     }
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+using System;
+using System.Linq;
+					
+public class Program
+{
+	public static void Main()
+	{
+		byte[] hexBytes = {43, 41, 54, 43, 47, 54, 43, 41, 47, 47, 41, 43};
+		var olar = string.Join( " ",hexBytes.Select( n => Convert.ToString( n, 2 ).PadLeft( 8, '0')));
+		var olar2 = string.Join( " ",hexBytes.Select( n => Convert.ToString( n, 8 )));
+		var olar3 = string.Join( " ",hexBytes.Select( n => Convert.ToString( n, 16 )));
+		
+		Console.WriteLine(olar);
+		Console.WriteLine(olar2);
+		Console.WriteLine(olar3);
+	}
 }
