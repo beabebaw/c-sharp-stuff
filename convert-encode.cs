@@ -59,7 +59,7 @@ public class Example
 
 	// STRING TO DECIMAL BYTE ARRAY
 	byte[] bytes3 = Encoding.Default.GetBytes(string2);
-	Console. WriteLine("String to Decimal byte array): \n   {0}\n", String.Join("-", bytes3));
+	Console. WriteLine("String to Decimal byte array: \n   {0}\n", String.Join("-", bytes3));
 
 	// STRING TO HEXADECIMAL BYTE ARRAY
 	byte[] oi = Encoding.Unicode.GetBytes("CATCGTCAGGAC");
@@ -93,17 +93,28 @@ using System.Text;
 
 class Program
 {
-    static string ToBinaryString( Encoding encoding, string text )
+    static string ToBinaryString01( Encoding encoding, string text )
     {
-	var binary01 = encoding.GetBytes( text ).Select( n => Convert.ToString( n, 2 ).PadLeft( 8, '0' ) );
-	var binary02 = encoding.GetBytes( text );
-	return string.Join( " ", binary01);
+		var binary = encoding.GetBytes( text ).Select( n => Convert.ToString( n, 2 ).PadLeft( 8, '0' ) );
+        return string.Join( " ", binary);
+    }
+	
+	static string ToBinaryString02( Encoding encoding, string text )
+    {
+		var binary = encoding.GetBytes( text ).Select( n => Convert.ToString( n, 2 ));
+        return string.Join( " ", binary);
+    }
+	
+	static string ToBinaryString03( Encoding encoding, string text )
+    {
+		var binary = encoding.GetBytes( text );
+        return string.Join( " ", binary);
     }
 
     static void Main( string[] args )
     {
-        Console.WriteLine( ToBinaryString( Encoding.UTF8, "CATCGTCAGGAC" ) );
+        Console.WriteLine("With padding: \n   {0}\n", ToBinaryString01( Encoding.UTF8, "CATCGTCAGGAC" ) );
+		Console.WriteLine("Without padding: \n   {0}\n", ToBinaryString02( Encoding.UTF8, "CATCGTCAGGAC" ) );
+		Console.WriteLine("Without Select method: \n   {0}\n", ToBinaryString03( Encoding.UTF8, "CATCGTCAGGAC" ) );
     }
 }
-
-// public byte[] ToArray ();
