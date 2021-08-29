@@ -1,3 +1,47 @@
+/*
+1st get the strandEncoded and convert to an hexadecimal array
+2nd with the hex array parse it as a binary string
+3rd split the binary string in pairs and put in a array
+4th associate every binary pair with a char in a loop
+*/
+
+using System;
+using System.Text;
+using System.Linq;
+
+public class Example
+{
+   public static void Main()
+   {
+	// BASE64
+	string base64 = "T+vX+o2Z7TflV/EwZ6HfOhAtu5Ai5hyNakZQiHGqDAtXU9L14fqWuI7GpKBELXO17HVhXU0G72DOSo9GSWXGOkrl2RPP6VgVlwMBXEF8SD3Tmpv7Sa6+UWNxJ5ZrT24pAGpVX1Rf5gMdS8ZJBJMfUgJSc6/JyvCcJoivXsLBqkeU11vXJujoc7SY3v7odUzPUtWUGNu/XzV6uTjLsIdAW6F+tC04SCsZaQD6Mezxs7E83wztLZFs1HclXG2wHcMsV4JdacAflwmpeq7axC5JiAWHj9B7Uy4PEt+1Euu+aEw9ztlplErwHEgCQ7LjkRBI3NRnKY3ysARUTlbgaYUe6xJinfVV3/O7lnKHeQ97K4E=";
+
+	// BASE64 TO HEXADECIMAL ARRAY
+	byte[] hexArray = Convert.FromBase64String(base64);
+	Console.WriteLine("Base64 to Hex array: ");
+	Console.WriteLine("   {0}\n", BitConverter.ToString(hexArray));	   
+	
+	var binary = string.Join(" ",hexArray.Select(n => Convert.ToString(n, 2).PadLeft(8, '0')));
+	Console.WriteLine("Hex array do Binary: ");
+	Console.WriteLine("   {0}\n", binary);
+	   
+	// NOW I NEED TO GET THIS BINARY CODE AND SEPARATE BY PAIRS
+	
+	//Console.WriteLine("Hex array: ");
+	//Console.WriteLine("   {0}\n", BitConverter.ToString(hexArray));
+	
+	// HEXADECIMAL ARRAY TO BASE64
+	//string string1 = Convert.ToBase64String(hexArray);
+	//Console.WriteLine("Hex array to base64:\n   {0}\n", string1);
+
+	// BASE64 TO HEXADECIMAL ARRAY
+	//byte[] hexArray = Convert.FromBase64String(string1);
+	//Console.WriteLine("Base64 to Big Endian: ");
+	//Console.WriteLine("   {0}\n", BitConverter.ToString(bytes2));	   
+   }
+} 
+
+// -----------------------------------------------------------------------------------------------------------------------------
 
 /*
 -> 2-bits arrays
