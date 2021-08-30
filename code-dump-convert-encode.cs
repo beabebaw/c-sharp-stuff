@@ -56,6 +56,39 @@ public class Example
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
+/* TO CONVERT BINARY TO HEX BYTES - UNDER CONSTRUCTION */
+
+using System;
+using System.Text;
+using System.Collections.Generic;
+
+class Program
+{
+	static void Main()
+	{
+		string strHex = Convert.ToInt32("010011011011010010100001",2).ToString("X");
+		Console.WriteLine(strHex);
+
+		//string hex = String.Format("{0:X2}", Convert.ToUInt64("010011011011010010100001", 2));
+		//Console.WriteLine(Convert.ToByte(hex));
+
+		int chunkSize = 2;
+		int stringLength = strHex.Length;
+		byte[] hexArray;
+
+		for (int i = 0; i < stringLength ; i += chunkSize)
+		{
+			if (i + chunkSize > stringLength) chunkSize = stringLength - i;
+			{
+				hexArray.Add(Convert.ToByte(strHex.Substring(i, chunkSize), 16));
+				Console.WriteLine("   {0}", strHex.Substring(i, chunkSize));
+			}
+		}
+	}
+}
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
 /*
 1st get the strandEncoded and convert to an hexadecimal array
 2nd with the hex array parse it as a binary string
