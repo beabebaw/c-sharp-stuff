@@ -126,27 +126,27 @@ class Program
 {
     static string ToBinaryString01( Encoding encoding, string text )
     {
-		var binary = encoding.GetBytes( text ).Select( n => Convert.ToString( n, 2 ).PadLeft( 8, '0' ) );
+	var binary = encoding.GetBytes( text ).Select( n => Convert.ToString( n, 2 ).PadLeft( 8, '0' ) );
         return string.Join( " ", binary);
     }
 	
 	static string ToBinaryString02( Encoding encoding, string text )
     {
-		var binary = encoding.GetBytes( text ).Select( n => Convert.ToString( n, 2 ));
+	var binary = encoding.GetBytes( text ).Select( n => Convert.ToString( n, 2 ));
         return string.Join( " ", binary);
     }
 	
 	static string ToBinaryString03( Encoding encoding, string text )
     {
-		var binary = encoding.GetBytes( text );
+	var binary = encoding.GetBytes( text );
         return string.Join( " ", binary);
     }
 
     static void Main( string[] args )
     {
         Console.WriteLine("With padding: \n   {0}\n", ToBinaryString01( Encoding.UTF8, "CATCGTCAGGAC" ) );
-		Console.WriteLine("Without padding: \n   {0}\n", ToBinaryString02( Encoding.UTF8, "CATCGTCAGGAC" ) );
-		Console.WriteLine("Without Select method: \n   {0}\n", ToBinaryString03( Encoding.UTF8, "CATCGTCAGGAC" ) );
+	Console.WriteLine("Without padding: \n   {0}\n", ToBinaryString02( Encoding.UTF8, "CATCGTCAGGAC" ) );
+	Console.WriteLine("Without Select method: \n   {0}\n", ToBinaryString03( Encoding.UTF8, "CATCGTCAGGAC" ) );
     }
 }
 
@@ -163,7 +163,7 @@ public class Program
 		var olar = string.Join( " ",hexBytes.Select( n => Convert.ToString( n, 2 ).PadLeft( 8, '0')));
 		var olar2 = string.Join( " ",hexBytes.Select( n => Convert.ToString( n, 8 )));
 		var olar3 = string.Join( " ",hexBytes.Select( n => Convert.ToString( n, 16 )));
-		
+
 		Console.WriteLine(olar);
 		Console.WriteLine(olar2);
 		Console.WriteLine(olar3);
