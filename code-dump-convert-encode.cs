@@ -1,4 +1,62 @@
 /*
+CODE TO CONVERT SRTING STRAND IN BASE64
+*/
+
+using System;
+using System.Linq;
+using System.Collections.Generic;
+
+public class Example
+{
+	public static void Main()
+	{
+		// STRAND STRING
+		string strand = "CATCGTCAGGAC";
+		
+		// SPLIT STRAND INTO ARRAYS
+		int chunkSize = 1;
+		int stringLength = strand.Length;
+		List<string> strandStringList = new List<string>();
+
+		for (int i = 0; i < stringLength ; i += chunkSize)
+		{
+			if (i + chunkSize > stringLength) chunkSize = stringLength - i;
+			{
+				strandStringList.Add(strand.Substring(i, chunkSize));
+				Console.WriteLine("   {0}", strand.Substring(i, chunkSize));
+			}
+		}
+		//Console.WriteLine(String.Join(", ", strandStringList));
+
+		// CHARS TO BINARY
+		List<string> binaryStringArray = new List<string>();
+		
+		foreach (string a in strandStringList)
+		{
+			if (a == "A") 
+			{
+				binaryStringArray.Add("00");
+			} 
+			else if (a == "C") 
+			{
+				binaryStringArray.Add("01");
+			} 
+			else if (a == "T")
+			{
+				binaryStringArray.Add("11");
+			}
+			else
+			{
+				binaryStringArray.Add("10");
+			} 
+		}
+		Console.WriteLine(String.Join("", binaryStringArray));
+	}
+} 
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+/*
 1st get the strandEncoded and convert to an hexadecimal array
 2nd with the hex array parse it as a binary string
 3rd split the binary string in pairs and put in a array
