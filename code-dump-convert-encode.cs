@@ -74,18 +74,20 @@ class Program
 
 		int chunkSize = 2;
 		int stringLength = strHex.Length;
-		string[] cars = new string[stringLength];
-		string[] oi = {"-"};
+		
+		string[] stringArray = new string[stringLength];
+		//string[] oi = {"-"};
 		
 		for (int i = 0; i < stringLength ; i += chunkSize)
 		{
 			if (i + chunkSize > stringLength) chunkSize = stringLength - i;
 			{
-				//sb.Append(strHex.Substring(i, chunkSize)) + "-";
 				//sb.Insert(i + 2, "x");
 				//Console.WriteLine(cars.Join<string>("-", cars));
 				//Console.WriteLine(i);
 				Console.WriteLine("   {0}", strHex.Substring(i, chunkSize));
+				stringArray.Append(strHex.Substring(i, chunkSize));
+				Console.WriteLine(string.Join("x", stringArray));
 			}
 		}
 		//Console.WriteLine(result);
