@@ -74,18 +74,47 @@ class Program
 
 		int chunkSize = 2;
 		int stringLength = strHex.Length;
-		byte[] hexArray;
-
+		string[] cars = new string[stringLength];
+		string[] oi = {"-"};
+		
 		for (int i = 0; i < stringLength ; i += chunkSize)
 		{
 			if (i + chunkSize > stringLength) chunkSize = stringLength - i;
 			{
-				hexArray.Add(Convert.ToByte(strHex.Substring(i, chunkSize), 16));
+				//sb.Append(strHex.Substring(i, chunkSize)) + "-";
+				//sb.Insert(i + 2, "x");
+				//Console.WriteLine(cars.Join<string>("-", cars));
+				//Console.WriteLine(i);
 				Console.WriteLine("   {0}", strHex.Substring(i, chunkSize));
 			}
 		}
+		//Console.WriteLine(result);
 	}
 }
+
+/* THIS WILL BE VERY USEFUL
+
+using System;
+using System.Linq;
+using System.Globalization;
+					
+public class Program
+{
+	public static void Main()
+	{
+	string s = "4D-B4-A1";
+	byte[] bytes = s.Split('-')
+    .Select(x => byte.Parse(x, NumberStyles.HexNumber))
+    .ToArray();
+	
+	string a = Convert.ToBase64String(bytes);
+	Console.WriteLine(a);
+		
+	Console.WriteLine(BitConverter.ToString(bytes));
+	}
+}
+
+*/
 
 // -----------------------------------------------------------------------------------------------------------------------------
 
