@@ -3,7 +3,7 @@ using System.Linq;
 using System.Globalization;
 using System.Collections.Generic;
 
-public class Example
+public class Encode
 {
 	public static void Main()
 	{
@@ -51,16 +51,16 @@ public class Example
 		//Console.WriteLine(String.Join("", binaryStringArray));
 		
 		// BINARY TO HEX STRING
-		string stringHex = Convert.ToInt32(binaryString, 2).ToString("X");
+		string hexString = Convert.ToInt32(binaryString, 2).ToString("X");
 		//Console.WriteLine(strHex);
 		
 		// FORMATTING HEX STRING
-        for (int i = 2; i <= stringHex.Length; i += 2)
+        for (int i = 2; i <= hexString.Length; i += 2)
         {
-            stringHex = stringHex.Insert(i, "-");
+            hexString = hexString.Insert(i, "-");
             i++;
         }
-		string formatStringHex = stringHex.TrimEnd('-');
+		string formatStringHex = hexString.TrimEnd('-');
 		//Console.WriteLine(formatStringHex);
 		
 		// STRING HEX TO BYTE HEX THEN BASE64
@@ -68,9 +68,9 @@ public class Example
 		.Select(x => byte.Parse(x, NumberStyles.HexNumber))
 		.ToArray();
 
-		string stringBase64 = Convert.ToBase64String(hexBytes);
-		Console.WriteLine(stringBase64);
-
+		string base64String = Convert.ToBase64String(hexBytes);
+		Console.WriteLine(base64String);
+		
 		//Console.WriteLine(BitConverter.ToString(hexBytes));
 	}
 } 
