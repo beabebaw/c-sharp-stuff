@@ -7,10 +7,10 @@ public class Encode
 {
 	public static void Main()
 	{
-		// STRAND STRING
+		// STRING STRAND
 		string stringStrand = "CATCGTCAGGAC";
 		
-		// SPLIT STRAND INTO ARRAYS
+		// SPLIT STRAND INTO STRING LIST
 		int chunkSize = 1;
 		int stringLength = stringStrand.Length;
 		List<string> stringStrandList = new List<string>();
@@ -25,7 +25,7 @@ public class Encode
 		}
 		//Console.WriteLine(String.Join(", ", strandStringList));
 
-		// CHARS TO BINARY
+		// EACH STRING LIST ITEM TO BINARY
 		List<string> binaryStringArray = new List<string>();
 		
 		foreach (string a in stringStrandList)
@@ -55,15 +55,15 @@ public class Encode
 		//Console.WriteLine(strHex);
 		
 		// FORMATTING HEX STRING
-        for (int i = 2; i <= hexString.Length; i += 2)
-        {
-            hexString = hexString.Insert(i, "-");
-            i++;
-        }
+		for (int i = 2; i <= hexString.Length; i += 2)
+		{
+		    hexString = hexString.Insert(i, "-");
+		    i++;
+		}
 		string formatStringHex = hexString.TrimEnd('-');
 		//Console.WriteLine(formatStringHex);
 		
-		// STRING HEX TO BYTE HEX THEN BASE64
+		// HEX STRING TO HEX BYTE THEN BASE64
 		byte[] hexBytes = formatStringHex.Split('-')
 		.Select(x => byte.Parse(x, NumberStyles.HexNumber))
 		.ToArray();
