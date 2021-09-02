@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-public class Example
+public class Decode
 {
 	public static void Main()
 	{
@@ -14,12 +14,12 @@ public class Example
 		//Console.WriteLine("Base64 to Hex array: ");
 		//Console.WriteLine("   {0}\n", BitConverter.ToString(hexArray));	   
 
-		// HEX ARRAY TO BINARY
+		// HEX ARRAY TO BINARY STRING
 		var binary = string.Join("",hexArray.Select(n => Convert.ToString(n, 2).PadLeft(8, '0')));
 		//Console.WriteLine("Hex array to Binary: ");
 		//Console.WriteLine("   {0}\n", binary);
 
-		// SPLIT BINARY INTO ARRAYS
+		// SPLIT BINARY STRING INTO 2BITS ARRAYS
 		int chunkSize = 2;
 		int stringLength = binary.Length;
 		List<string> binaryStringList = new List<string>();
