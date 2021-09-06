@@ -12,6 +12,7 @@ keep the token
 - use access token to request job
 use the token
 keep the job id
+keep the job type
 keep the string that will be worked on
 
 in no particular order:
