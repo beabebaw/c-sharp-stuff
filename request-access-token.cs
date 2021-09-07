@@ -36,4 +36,8 @@ using var reader = new StreamReader(respStream);
 string data = reader.ReadToEnd();
 Console.WriteLine(data);
 
+// get the access token only
+string accessToken = data.Substring(16).Split('"')[0];
+Console.WriteLine(accessToken);
+
 record User(string username, string password);
