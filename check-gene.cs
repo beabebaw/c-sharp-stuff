@@ -2,6 +2,7 @@
 // it can start at any index and go straight, but it need to contain at least 1/2 of the string01 within string02
 
 using System;
+using System.Collections.Generic;
 
 public class CheckGene
 {
@@ -11,11 +12,46 @@ public class CheckGene
 		//string dnaStrand = "28347928348456423424567834239423";
 		string gene = "TACCGCTTCATAAACCGCTAGACTGCATGATCGGGT";
 		string dnaStrand = "CATCTCAGTCCTACTAAACTCGCGAAGCTCATACTAGCTACTAAACCGCTAGACTGCATGATCGCATAGCTAGCTACGCT";
+
+		// i need to check if the DNA strand is the template or the complementary one
+		
+		List<string> dnaStrandList = new List<string>();
+		// DNA STRAND STRING TO DNA STRAND STRING LIST 
+		for (int i = 0; i < dnaStrand.Length; i++)
+		{
+			dnaStrandList.Add(dnaStrand.Substring(i, 1));
+		}
+		//Console.WriteLine(String.Join("-", dnaStrandList));
+		
+		List<string> dnaTemplateStrandList = new List<string>();
+		// DNA COMPLEMENTARY STRAND TO TEMPLATE STRAND
+		foreach (string a in dnaStrandList)
+		{
+			if (a == "A") 
+			{
+				dnaTemplateStrandList.Add("T");
+			} 
+			else if (a == "C") 
+			{
+				dnaTemplateStrandList.Add("G");
+			} 
+			else if (a == "T")
+			{
+				dnaTemplateStrandList.Add("A");
+			}
+			else
+			{
+				dnaTemplateStrandList.Add("C");
+			} 
+		}
+		Console.WriteLine(String.Join("", dnaTemplateStrand));
+		
+		// ---------------------------------------------------------------------------------------------------
    
+		// GENE SUBSTRING HAS EVEN NUMBERS OS CHARACTERS
 		int isStringIndexEven = gene.Length % 2;
 		Console.WriteLine("String is even: {0}", isStringIndexEven == 0);
 		
-		// GENE SUBSTRING HAS EVEN NUMBERS OS CHARACTERS
 		if (isStringIndexEven == 0)
 		{
 			int endIndex = gene.Length / 2;
