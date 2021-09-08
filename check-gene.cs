@@ -8,43 +8,53 @@ public class CheckGene
 {
 	public static void Main()
 	{
-		//string gene = "012345678";
-		//string dnaStrand = "28347928348456423424567834239423";
 		string gene = "TACCGCTTCATAAACCGCTAGACTGCATGATCGGGT";
-		string dnaStrand = "CATCTCAGTCCTACTAAACTCGCGAAGCTCATACTAGCTACTAAACCGCTAGACTGCATGATCGCATAGCTAGCTACGCT";
-
 		// i need to check if the DNA strand is the template or the complementary one
+       		string dnaStrand = "AAGCTCATCTCAGTCCTACTAAACTCGCGAAGCTCATACTAGCTACTAAACCGCTAGACTGCATGATCGCATAGCTAGCTACGCT";
 		
-		List<string> dnaStrandList = new List<string>();
-		// DNA STRAND STRING TO DNA STRAND STRING LIST 
-		for (int i = 0; i < dnaStrand.Length; i++)
-		{
-			dnaStrandList.Add(dnaStrand.Substring(i, 1));
-		}
-		//Console.WriteLine(String.Join("-", dnaStrandList));
+		// IS THIS THE TEMPLATE OR COMPLEMENTARY STRAND?
+		string isThisTheComplementaryStrand = dnaStrand.Substring(0, 3);
 		
-		List<string> dnaTemplateStrandList = new List<string>();
-		// DNA COMPLEMENTARY STRAND TO TEMPLATE STRAND
-		foreach (string a in dnaStrandList)
+		if (isThisTheComplementaryStrand != "CAT")
 		{
-			if (a == "A") 
+			//Console.WriteLine("This is the complementary strand\n");
+			// DNA STRAND STRING TO DNA STRAND STRING LIST
+			List<string> dnaStrandList = new List<string>();
+			
+			for (int i = 0; i < dnaStrand.Length; i++)
 			{
-				dnaTemplateStrandList.Add("T");
-			} 
-			else if (a == "C") 
-			{
-				dnaTemplateStrandList.Add("G");
-			} 
-			else if (a == "T")
-			{
-				dnaTemplateStrandList.Add("A");
+				dnaStrandList.Add(dnaStrand.Substring(i, 1));
 			}
-			else
+			//Console.WriteLine(String.Join("-", dnaStrandList));
+		
+			List<string> dnaTemplateStrandList = new List<string>();
+		
+			// DNA COMPLEMENTARY STRAND TO TEMPLATE STRAND
+			foreach (string a in dnaStrandList)
 			{
-				dnaTemplateStrandList.Add("C");
-			} 
+				if (a == "A") 
+				{
+					dnaTemplateStrandList.Add("T");
+				} 
+				else if (a == "C") 
+				{
+					dnaTemplateStrandList.Add("G");
+				} 
+				else if (a == "T")
+				{
+					dnaTemplateStrandList.Add("A");
+				}
+				else
+				{
+					dnaTemplateStrandList.Add("C");
+				} 
+			}
+			string dnaTemplateStrand = String.Join("", dnaTemplateStrandList);
+			Console.WriteLine(dnaTemplateStrand);
+		} else
+		{
+			string dnaTemplateStrand = dnaStrand;
 		}
-		Console.WriteLine(String.Join("", dnaTemplateStrand));
 		
 		// ---------------------------------------------------------------------------------------------------
    
