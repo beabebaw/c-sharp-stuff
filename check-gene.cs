@@ -4,14 +4,16 @@
 using System;
 using System.Collections.Generic;
 
+string gene = "TACCGCTTCATAAACCGCTAGACTGCATGATCGGGT";
+string inputDnaStrand = "CATCTCAGTCCTACTAAACTCGCGAAGCTCATACTAGCTACTAAACCGCTAGACTGCATGATCGCATAGCTAGCTACGCT";
+
+Console.WriteLine(CheckGene.IsActivated(gene, inputDnaStrand));
+
 public class CheckGene
 {
-	public static void Main()
+	public static bool IsActivated(string gene, string inputDnaStrand)
 	{
-		string gene = "TACCGCTTCATAAACCGCTAGACTGCATGATCGGGT";
 		// i need to check if the DNA strand is the template or the complementary one
-       	string inputDnaStrand = "AAGCTCATCTCAGTCCTACTAAACTCGCGAAGCTCATACTAGCTACTAAACCGCTAGACTGCATGATCGCATAGCTAGCTACGCT";
-
 		string TemplateOrComplementary(string value)
 		{
 			// IS THIS THE TEMPLATE OR COMPLEMENTARY STRAND?
@@ -59,19 +61,22 @@ public class CheckGene
 			}
 		}
 		
-		Console.WriteLine("This is a template strand: \n{0}\n", TemplateOrComplementary(inputDnaStrand));
+		//Console.WriteLine("This is a template strand: \n{0}\n", TemplateOrComplementary(inputDnaStrand));
 		var dnaStrand = TemplateOrComplementary(inputDnaStrand);
 		
 		// ---------------------------------------------------------------------------------------------------
    
-		// GENE SUBSTRING HAS EVEN NUMBERS OS CHARACTERS
 		int isStringIndexEven = gene.Length % 2;
-		Console.WriteLine("String is even: {0}", isStringIndexEven == 0);
+		//Console.WriteLine("String is even: {0}", isStringIndexEven == 0);
 		
+		bool geneActivated = true;
+		
+		// GENE SUBSTRING HAS EVEN NUMBERS OF CHARACTERS
 		if (isStringIndexEven == 0)
 		{
 			int endIndex = gene.Length / 2;
-			Console.WriteLine("Each part of the string has {0} characters \n", endIndex);
+			//Console.WriteLine("Each part of the string has {0} characters \n", endIndex);
+			
 			// SPLIT AND CHECKING IF THE DNA STRAND CONTAINS THE GENE SUBSTRING
 			// IT RUNS THROUGH THE INDEX ONE BY ONE WITH A SUBSTRING WITH CONSTANTE LENGTH
 			for (int startIndex = 0; startIndex <= endIndex; startIndex++)
@@ -82,26 +87,28 @@ public class CheckGene
 				// CHECKING IF DNA STRAND CONTAINS GENE SUBSTRING
 				if (b == true)
 				{
-					Console.WriteLine("String2 contains String1");
-					Console.WriteLine("Part: {0}\n", geneSubstring);
+					geneActivated = true;
+					//Console.WriteLine("String2 contains String1");
+					//Console.WriteLine("Part: {0}\n", geneSubstring);
 					break;
 				}
 				else
 				{
 					if (startIndex == endIndex)
 					{
-						Console.WriteLine("String2 doesn't contains String1");
+						//Console.WriteLine("String2 doesn't contains String1");
 						break;
 					}
+					geneActivated = false;
 				}
 			}
 		}
 		
-		// GENE SUBSTRING HAS ODD NUMBERS OS CHARACTERS
+		// GENE SUBSTRING HAS ODD NUMBERS OF CHARACTERS
 		else
 		{
 			int endIndex = (gene.Length + 1) / 2;
-			Console.WriteLine("Each part of the string has {0} characters \n", endIndex);
+			//Console.WriteLine("Each part of the string has {0} characters \n", endIndex);
 			for (int startIndex = 0; startIndex < endIndex; startIndex++)
 			{    
 				string geneSubstring = gene.Substring(startIndex, endIndex);
@@ -110,19 +117,22 @@ public class CheckGene
 				// CHECKING IF DNA STRAND CONTAINS GENE SUBSTRING
 				if (b == true)
 				{
-					Console.WriteLine("String2 contains String1");
-					Console.WriteLine("Part: {0}\n", geneSubstring);
+					geneActivated = true;
+					//Console.WriteLine("String2 contains String1");
+					//Console.WriteLine("Part: {0}\n", geneSubstring);
 					break;
 				}
 				else
 				{
 					if (startIndex == endIndex - 1)
 					{
-						Console.WriteLine("String2 doesn't contains String1");
+						//Console.WriteLine("String2 doesn't contains String1");
 						break;
 					}
+					geneActivated = false;
 				}
 			}
 		}
+		return geneActivated;
 	}
 } 
