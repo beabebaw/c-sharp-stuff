@@ -2,13 +2,15 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
+// BASE64
+string base64 = "T+vX+o2Z7TflV/EwZ6HfOhAtu5Ai5hyNakZQiHGqDAtXU9L14fqWuI7GpKBELXO17HVhXU0G72DOSo9GSWXGOkrl2RPP6VgVlwMBXEF8SD3Tmpv7Sa6+UWNxJ5ZrT24pAGpVX1Rf5gMdS8ZJBJMfUgJSc6/JyvCcJoivXsLBqkeU11vXJujoc7SY3v7odUzPUtWUGNu/XzV6uTjLsIdAW6F+tC04SCsZaQD6Mezxs7E83wztLZFs1HclXG2wHcMsV4JdacAflwmpeq7axC5JiAWHj9B7Uy4PEt+1Euu+aEw9ztlplErwHEgCQ7LjkRBI3NRnKY3ysARUTlbgaYUe6xJinfVV3/O7lnKHeQ97K4E=";
+
+Console.WriteLine(Decode.DecodingBase64(base64));
+
 public class Decode
 {
-	public static void Main()
+	public static string DecodingBase64(string base64)
 	{
-		// BASE64
-		string base64 = "T+vX+o2Z7TflV/EwZ6HfOhAtu5Ai5hyNakZQiHGqDAtXU9L14fqWuI7GpKBELXO17HVhXU0G72DOSo9GSWXGOkrl2RPP6VgVlwMBXEF8SD3Tmpv7Sa6+UWNxJ5ZrT24pAGpVX1Rf5gMdS8ZJBJMfUgJSc6/JyvCcJoivXsLBqkeU11vXJujoc7SY3v7odUzPUtWUGNu/XzV6uTjLsIdAW6F+tC04SCsZaQD6Mezxs7E83wztLZFs1HclXG2wHcMsV4JdacAflwmpeq7axC5JiAWHj9B7Uy4PEt+1Euu+aEw9ztlplErwHEgCQ7LjkRBI3NRnKY3ysARUTlbgaYUe6xJinfVV3/O7lnKHeQ97K4E=";
-
 		// BASE64 TO HEXADECIMAL ARRAY
 		byte[] hexArray = Convert.FromBase64String(base64);
 		//Console.WriteLine("Base64 to Hex array: ");
@@ -56,6 +58,8 @@ public class Decode
 				strandString.Add("G");
 			} 
 		}
-		Console.WriteLine(String.Join("", strandString));
+		//Console.WriteLine(String.Join("", strandString));
+		string convertedStrandString = String.Join("", strandString);
+		return convertedStrandString;
 	}
 } 
