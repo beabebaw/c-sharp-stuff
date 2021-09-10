@@ -3,13 +3,15 @@ using System.Linq;
 using System.Globalization;
 using System.Collections.Generic;
 
+// STRING STRAND
+string stringStrand = "CATCGTCAGGAC";
+
+Console.WriteLine(Encode.EncodingString(stringStrand));
+
 public class Encode
 {
-	public static void Main()
-	{
-		// STRING STRAND
-		string stringStrand = "CATCGTCAGGAC";
-		
+	public static string EncodingString(string stringStrand)
+	{		
 		// SPLIT STRAND INTO STRING LIST
 		int chunkSize = 1;
 		int stringLength = stringStrand.Length;
@@ -69,8 +71,9 @@ public class Encode
 		.ToArray();
 
 		string base64String = Convert.ToBase64String(hexBytes);
-		Console.WriteLine(base64String);
+		//Console.WriteLine(base64String);
 		
+		return base64String;
 		//Console.WriteLine(BitConverter.ToString(hexBytes));
 	}
 } 
