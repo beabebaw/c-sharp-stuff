@@ -5,11 +5,17 @@ using System.Net;
 using System.Text.Json;
 using System.Collections.Generic;
 
-// POST request to https://gene.lacuna.cc/api/users/login. The data sent is in JSON format 
+var user = new Dictionary<string, string>(){
+	{"username", "JohnDoe"},
+	{"password", "jardineiro94"}
+};
 
-public class LoginHttpRequest
+Console.WriteLine(HttpRequest.Login(user));
+
+// POST request to https://gene.lacuna.cc/api/users/login. The data sent is in JSON format 
+public class HttpRequest
 {
-	public static void Main()
+	public static string Login(Dictionary<string, string> user)
 	{
 		var url = "https://gene.lacuna.cc/api/users/login";
 		
@@ -19,10 +25,6 @@ public class LoginHttpRequest
 
 		// serialize an user object to JSON and transform it into an array of bytes 
 		//var user = new User("JohnDoe", "jardineiro94");
-		var user = new Dictionary<string, string>(){
-			{"username", "JohnDoe"},
-			{"password", "jardineiro94"}
-		};
 		var json = JsonSerializer.Serialize(user);
 		byte[] byteArray = Encoding.UTF8.GetBytes(json);
 
@@ -47,8 +49,13 @@ public class LoginHttpRequest
 
 		// get the access token only
 		string accessToken = data.Substring(16).Split('"')[0];
-		Console.WriteLine(accessToken);
+		//Console.WriteLine(accessToken);
 		
+		reader.Close();
+		respStream.Close();
+		response.Close();
+		
+		return accessToken;
 		//record User(string username, string password);
 	}
 }
