@@ -5,11 +5,25 @@ using System.Net;
 using System.Text.Json;
 using System.Collections.Generic;
 
-// POST request to https://gene.lacuna.cc/api/users/create. The data sent is in JSON format 
+var user = new Dictionary<string, string>(){
+	{"username", "JohnDoe"},
+	{"email", "johngardener@gmail.com"},
+	{"password", "jardineiro94"}
+};
 
-public class CreateHttpRequest
+HttpRequest.Create(user);
+
+// Checking if the return has only username and password keywords
+//foreach (KeyValuePair<string, string> i in user)  
+//    {  
+//        Console.WriteLine("Key: {0}, Value: {1}",  
+//            i.Key, i.Value);  
+//    }
+
+// POST request to https://gene.lacuna.cc/api/users/create. The data sent is in JSON format 
+public class HttpRequest
 {
-	public static void Main()
+	public static object Create(Dictionary <string, string> user)
 	{
 		var url = "https://gene.lacuna.cc/api/users/create";
 
@@ -19,12 +33,6 @@ public class CreateHttpRequest
 
 		// serialize an user object to JSON and transform it into an array of bytes 
 		//var user = new User("JohnDoe", "johngardener@gmail.com", "jardineiro94");
-		var user = new Dictionary<string, string>(){
-			{"username", "JohnDoe"},
-			{"email", "johngardener@gmail.com"},
-			{"password", "jardineiro94"}
-		};
-
 		var json = JsonSerializer.Serialize(user);
 		byte[] byteArray = Encoding.UTF8.GetBytes(json);
 
@@ -46,7 +54,12 @@ public class CreateHttpRequest
 		using var reader = new StreamReader(respStream);
 		string data = reader.ReadToEnd();
 		Console.WriteLine(data);
-
+		
+		reader.Close();
+		respStream.Close();
+		response.Close();
+		
+		return user.Remove("email");
 		//record User(string username, string email, string password);
 	}
 }
