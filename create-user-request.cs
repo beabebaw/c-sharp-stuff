@@ -1,4 +1,3 @@
-
 using System;
 using System.IO;
 using System.Text;
@@ -8,9 +7,9 @@ using System.Collections.Generic;
 
 // POST request to https://gene.lacuna.cc/api/users/create. The data sent is in JSON format 
 
-public class PostHttpRequest
+public class CreateHttpRequest
 {
-	public static void Create()
+	public static void Main()
 	{
 		var url = "https://gene.lacuna.cc/api/users/create";
 
