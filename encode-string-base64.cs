@@ -28,29 +28,29 @@ public class Encode
 		//Console.WriteLine(String.Join(", ", strandStringList));
 
 		// EACH STRING LIST ITEM TO BINARY
-		List<string> binaryStringArray = new List<string>();
+		List<string> binaryStringList = new List<string>();
 		
 		foreach (string a in stringStrandList)
 		{
 			if (a == "A") 
 			{
-				binaryStringArray.Add("00");
+				binaryStringList.Add("00");
 			} 
 			else if (a == "C") 
 			{
-				binaryStringArray.Add("01");
+				binaryStringList.Add("01");
 			} 
 			else if (a == "T")
 			{
-				binaryStringArray.Add("11");
+				binaryStringList.Add("11");
 			}
 			else
 			{
-				binaryStringArray.Add("10");
+				binaryStringList.Add("10");
 			} 
 		}
-		string binaryString = String.Join("", binaryStringArray);
-		//Console.WriteLine(String.Join("", binaryStringArray));
+		string binaryString = String.Join("", binaryStringList);
+		//Console.WriteLine(String.Join("", binaryStringList));
 		
 		// BINARY TO HEX STRING
 		string hexString = Convert.ToInt32(binaryString, 2).ToString("X");
