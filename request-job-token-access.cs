@@ -1,14 +1,15 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Collections.Generic;
 
-var accessToken = "2DFB5994E9E9344BACFB44ED65AA5735876914D1258A1190CB207465530276DD0AEA98A1D79E824650AE42220FB502E7187B8A7E8091DB1D508F50A0ECA695D004DB60CD71D1AE440A0A366F99963BD9";
+var accessToken = "D239E89F68E4DF4BAFF1F9431E3F7AB934E24455467563701CBC03E20505577C4B4A0A14D5F0857EDADFBD0551815B065ADB22E690A040AD21E0725A8E8E11AA0D7B40D1B4638F4612485DF0D49C8EF1";
 
-HttpRequest.Main(accessToken);
+Console.WriteLine(HttpRequest.Main(accessToken));
 
 public class HttpRequest
 {
-	public static void Main(string accessToken)
+	public static string Main(string accessToken)
 	{
 		var url = "https://gene.lacuna.cc/api/dna/jobs";
 
@@ -27,5 +28,29 @@ public class HttpRequest
 		
 		reader.Close();
 		httpResponse.Close();
+		
+		if (!data.Contains("Unauthorized"))
+		{
+			char[] splitChars = {',', ':'};
+			string[] splitData = data.Split(splitChars);
+			List<string> dataStringList = new List<string>();
+
+			foreach (var sub in splitData)
+			{
+				char[] trimChars = { '{', '}', '\"'};
+				var subList = sub.Trim(trimChars);
+				//Console.WriteLine($"Substring: {subList}");
+				dataStringList.Add(subList);
+			}
+
+			//Console.WriteLine(String.Join(" ", dataStringList));
+			string dataString = String.Join(" ", dataStringList);
+			return dataString;
+		}
+		else
+		{
+			string dataString = data;
+			return dataString;
+		}
 	}
 }
