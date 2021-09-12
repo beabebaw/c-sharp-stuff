@@ -1,3 +1,31 @@
+// THIS IS SOME SHIT ABOUT THE REQUEST JOB WITH ACCESS TOKEN ETC
+
+using System;
+using System.Collections.Generic;
+
+// DATA STRING
+string data = "{'job':{'id':'d3617e21a4674e58a5d90d0ef1e11514','type':'CheckGene','strandEncoded':'TKqH1AVi+gYnL4wIX/s3sKrzYcRlBN0c4ObhLB9ZZoMPD3xJjppoazeo4Euvn6NWP8nV9POHHTv7vlOb6loyYBWNHEfgjKEPivaNvSOSbUBCgF1+dmk+RfhLfSSmSeppwROCpqZT4eF/03JOPFkMOv203ABwaFdfyrRXMnD8aUEMI/wQD8aa7557/qL28AieP0In8m3p+Vm8Itzx+65xg2oxQRld/Co2Ge1i9Gq0admsufMt1XfUIiqiU+3pqPPvCXs4xK/uQEIY8Nh/hgTvB7kDRUK7Q63zXR7vuqg9TXH5curufKQqvXmwFeSeVJsls0wz5mOxNMbNRGaQ/4Wa2qNnhhQZAIsU2YjJCi4=','geneEncoded':'yFQJg8oHXAlnDUg+JCE3PZq+8xY6QTfNhwuzwB8M2+cplwTwXQ01fj7RPFk91fXeU9Y/ydX084cdO/u+U5vqWjJgFY0cR+CMiXXY'},'code':'Success'}";
+
+char[] splitChars = {',', ':'};
+string[] splitData = data.Split(splitChars);
+List<string> dataStringList = new List<string>();
+
+ foreach (var sub in splitData)
+{
+	char[] trimChars = { '{', '}', '\''};
+	var subList = sub.Trim(trimChars);
+    //Console.WriteLine($"Substring: {subList}");
+	dataStringList.Add(subList);
+}
+
+//Console.WriteLine(String.Join(" ", stringList));
+Console.WriteLine("Job id: {0}\n", dataStringList[2]);
+Console.WriteLine("Job type: {0}\n", dataStringList[4]);
+Console.WriteLine("Strand encoded: {0}\n", dataStringList[6]);
+Console.WriteLine("Gene encoded: {0}", dataStringList[8]);
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
 /*
 CODE TO CONVERT SRTING STRAND IN BASE64
 */
