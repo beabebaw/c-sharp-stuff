@@ -3,15 +3,15 @@ using System.Linq;
 using System.Globalization;
 using System.Collections.Generic;
 
-// STRING STRAND
-string stringStrand = "CATCGTCAGGAC";
+string stringStrand = "TAAGGAGTTAGGTACTAAGCCCCTCGGGTTCGAGCATATAAGGGCCCCGAGAGCTTATAAGGAGTTAGGTACTAAGCCCCTCGGGTTCGTAAGACCGTAAGAGAGCTTATAAGGAGTTAGGTACTAAG";
+//Console.WriteLine(stringStrand.Length);
 
 Console.WriteLine(Encode.EncodingString(stringStrand));
 
 public class Encode
 {
 	public static string EncodingString(string stringStrand)
-	{		
+	{
 		// SPLIT STRAND INTO STRING LIST
 		int chunkSize = 1;
 		int stringLength = stringStrand.Length;
@@ -51,10 +51,32 @@ public class Encode
 		}
 		string binaryString = String.Join("", binaryStringList);
 		//Console.WriteLine(String.Join("", binaryStringList));
+		//Console.WriteLine(binaryStringList.Count);
+		
+		int binaryChunkSize = 4;
+		int binaryLength = binaryString.Length;
+		List<string> binaryChunkList = new List<string>();
+
+		for (int i = 0; i < binaryLength ; i += binaryChunkSize)
+		{
+			if (i + binaryChunkSize > binaryLength) binaryChunkSize = binaryLength - i;
+			{
+				binaryChunkList.Add(binaryString.Substring(i, binaryChunkSize));
+				//Console.WriteLine("   {0}", strand.Substring(i, binaryChunkSize));
+			}
+		}
+		//Console.WriteLine(String.Join(" - ", binaryChunkList));
 		
 		// BINARY TO HEX STRING
-		string hexString = Convert.ToInt32(binaryString, 2).ToString("X");
-		//Console.WriteLine(strHex);
+		List<string> hexList = new List<string>();
+		foreach (string item in binaryChunkList)
+		{
+			string hexChunkString = Convert.ToInt64(item, 2).ToString("X");
+			hexList.Add(hexChunkString);
+			//Console.WriteLine(hexChunkString);
+		}
+		string hexString = String.Join("", hexList);
+		//Console.WriteLine(String.Join("", hexList));
 		
 		// FORMATTING HEX STRING
 		for (int i = 2; i <= hexString.Length; i += 2)
@@ -76,4 +98,4 @@ public class Encode
 		return base64String;
 		//Console.WriteLine(BitConverter.ToString(hexBytes));
 	}
-} 
+}
